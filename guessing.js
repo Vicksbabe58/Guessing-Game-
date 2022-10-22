@@ -16,7 +16,7 @@ function randomNo(range) {
     if (guess === null || guess === "") {
       return;
     }
-    let random = range;
+    let random = Math.floor(Math.random() * range) + 1;
     // return random
     console.log(random);
     if (random == guess) {
