@@ -1,35 +1,41 @@
-let range = 1;
+let range = 2;
 let score = 0;
 let gameLevel = 5;
 let two = 2;
-
-function guessingGame(range) {
-  let userName = prompt("Enter your name");
-  if (userName === null || userName === "") {
-    return "Please put your name";
+let guessLimit = 3;
+let guessCount = 0;
+function randomNo(range) {
+  let username = prompt("Enter your name to being the Game");
+  if (username === null || username === "") {
+    return;
   }
   while (score != gameLevel) {
-    let guess = prompt(
-      `${userName}! guess a number between range of 1 and ${two}. NOTE! Range increases by 1 on a correct guess. Your score is ${score} `
-    );
+    let guess = prompt(` ${username}! guess a number between
+      the range of 1 and ${two}. NOTE! Range increases by
+       1 on a correct guess.Your score is ${score}`);
+    if (guess === null || guess === "") {
+      return;
+    }
     let random = range;
-    //return random
+    // return random
     console.log(random);
-
-    if (random === guess) {
+    if (random == guess) {
       score++;
       range++;
       two++;
-      alert(
-        `Your guess is correct! Your score is ${score}.
-         Click Ok to go to the next level.
-          NOTE your score is increased on every correct guess`
-      );
-    } else {
-      alert("You Guessed Wrong");
-      return;
+      guessCount = 0;
+      alert(`Your guess is correct! your score is ${score}.
+     Click OK to go to the next Level. NOTE your score
+     is increased on every correct guess`);
+    } else if (random != guess) {
+      if (guessCount < guessLimit) {
+        alert("Guess again");
+        guessCount++;
+      } else {
+        alert("You lose");
+        return;
+      }
     }
   }
 }
-
-guessingGame(range);
+randomNo(range);
